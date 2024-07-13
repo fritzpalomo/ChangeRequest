@@ -1,0 +1,65 @@
+import javax.swing.JOptionPane;
+
+public class GradeCalculatorGUI extends javax.swing.JFrame {
+
+    public GradeCalculatorGUI() {
+        initComponents();
+    }
+
+    private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        try {
+            // Get input values
+            double milestone1 = Double.parseDouble(milestone1Field.getText());
+            double milestone2 = Double.parseDouble(milestone2Field.getText());
+            double terminalAssessment = Double.parseDouble(terminalAssessmentField.getText());
+
+            // Constants for maximum points allowed
+            final double MAX_MILESTONE1_POINTS = 25.0;
+            final double MAX_MILESTONE2_POINTS = 40.0;
+            final double MAX_TERMINAL_ASSESSMENT_POINTS = 35.0;
+
+            // Check if values are within the valid range
+            if (milestone1 < 0 || milestone1 > MAX_MILESTONE1_POINTS ||
+                milestone2 < 0 || milestone2 > MAX_MILESTONE2_POINTS ||
+                terminalAssessment < 0 || terminalAssessment > MAX_TERMINAL_ASSESSMENT_POINTS) {
+                throw new IllegalArgumentException("Invalid input. Values must be between 0 and the maximum points allowed.");
+            }
+
+            // Calculate grades based on the distribution
+            double gradeMilestone1 = (milestone1 / MAX_MILESTONE1_POINTS) * 25.0;
+            double gradeMilestone2 = (milestone2 / MAX_MILESTONE2_POINTS) * 40.0;
+            double gradeTerminalAssessment = (terminalAssessment / MAX_TERMINAL_ASSESSMENT_POINTS) * 35.0;
+
+            // Calculate total grade
+            double totalGrade = gradeMilestone1 + gradeMilestone2 + gradeTerminalAssessment;
+
+            // Display results
+            String message = String.format("Grade for Milestone 1: %.2f\nGrade for Milestone 2: %.2f\nGrade for Terminal Assessment: %.2f\nTotal Grade: %.2f",
+                    gradeMilestone1, gradeMilestone2, gradeTerminalAssessment, totalGrade);
+            JOptionPane.showMessageDialog(this, message, "Grade Calculation Result", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numeric values.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Input Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Auto-generated code by NetBeans
+    private void initComponents() {
+        // Component initialization code here
+        // ...
+
+        pack();
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton calculateButton;
+    private javax.swing.JTextField milestone1Field;
+    private javax.swing.JLabel milestone1Label;
+    private javax.swing.JTextField milestone2Field;
+    private javax.swing.JLabel milestone2Label;
+    private javax.swing.JTextField terminalAssessmentField;
+    private javax.swing.JLabel terminalAssessmentLabel;
+    // End of variables declaration                   
+}
