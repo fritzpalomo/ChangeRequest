@@ -34,7 +34,6 @@ public class RecordManagerGUI extends javax.swing.JFrame {
         }
     }                                                  
 
-    // Auto-generated code by NetBeans
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
